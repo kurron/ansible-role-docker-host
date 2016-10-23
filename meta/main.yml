@@ -31,9 +31,9 @@ galaxy_info:
     - xenial
 
   galaxy_tags:
-      - development
-      - jvm
-      - java
+      - docker-machine
+      - docker-engine
+      - docker-compose
 
 dependencies: []
   # List your role dependencies here, one per line.

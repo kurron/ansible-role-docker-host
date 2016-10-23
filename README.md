@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Installation of tools than any self-respecting JVM developer loves and needs.
+Installation of bits from Docker, Inc. useful in running a Docker host.
 
 Requirements
 ------------
@@ -11,16 +11,14 @@ TODO
 Role Variables
 --------------
 
-* jvm_oracle_jdk_install: true
-* jvm_oracle_jdk_version: jdk1.8.0_111
-* jvm_oracle_jdk_path: 8u111-b14/jdk-8u111
-* jvm_oracle_jdk_link_destination: oracle-jdk-8
-
-* jvm_sdkman_install: true
-
-* jvm_intellij_install: true
-* jvm_intellij_version: 2016.2.4
-* jvm_intellij_build: 162.2032.8
+* docker_engine_install: true
+* docker_engine_graph: /var/lib/docker
+* docker_engine_storage_driver: overlay2
+* docker_engine_log_size: 1g
+* docker_compose_install: true
+* docker_compose_version: 1.8.1
+* docker_machine_install: true
+* docker_machine_version: 0.8.2
 
 Dependencies
 ------------
@@ -33,7 +31,7 @@ Example Playbook
 ```
 - hosts: servers
   roles:
-      - { role: kurron.jvm-developer, jvm_sdkman_install: false, vm_intellij_version: 2016.2.4, jvm_intellij_build: 162.2032.8 }
+      - { role: kurron.docker-host, jvm_sdkman_install: false, vm_intellij_version: 2016.2.4, jvm_intellij_build: 162.2032.8 }
 ```
 
 License
