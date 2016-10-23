@@ -31,7 +31,7 @@ Example Playbook
 ```
 - hosts: servers
   roles:
-      - { role: kurron.docker-host, jvm_sdkman_install: false, vm_intellij_version: 2016.2.4, jvm_intellij_build: 162.2032.8 }
+      - { role: kurron.docker-host, docker_engine_storage_driver: overlay2 }
 ```
 
 License
