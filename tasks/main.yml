@@ -1,24 +1,4 @@
 ---
-- name: Create privledged folders 
-  become: yes
-  file:
-      path: "{{item}}"
-      state: directory
-      mode: 0755
-      recurse: yes
-  with_items:
-  - "{{ansible_user_dir}}/{{docker_download_directory}}"
-
-- name: Install Required Packages
-  become: yes
-  package:
-      name: "{{item}}"
-      state: latest
-  with_items:
-  - "curl"
-  - "ca-certificates"
-  - "apt-transport-https"
-
 - name: Create Docker Configuration Directory
   become: yes
   file:

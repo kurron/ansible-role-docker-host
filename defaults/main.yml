@@ -1,6 +1,5 @@
 ---
 docker_download_directory: Downloads
-docker_software_directory: Software
 
 docker_engine_install: true
 docker_engine_graph: /var/lib/docker
