@@ -1,6 +1,4 @@
 ---
-docker_download_directory: Downloads
-
 docker_engine_install: true
 docker_engine_graph: /var/lib/docker
 docker_engine_storage_driver: overlay2
