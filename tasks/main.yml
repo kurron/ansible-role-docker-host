@@ -22,13 +22,13 @@
   become: no
   get_url:
       url: "https://get.docker.com/"
-      dest: "{{ansible_user_dir}}/{{docker_download_directory}}/docker-install.sh"
+      dest: "{{ansible_user_dir}}/{{base_download_directory}}/docker-install.sh"
       mode: 0554
   when: docker_engine_install
 
 - name: Run Docker Engine Installer
   become: yes
-  shell: "{{ansible_user_dir}}/{{docker_download_directory}}/docker-install.sh"
+  shell: "{{ansible_user_dir}}/{{base_download_directory}}/docker-install.sh"
   when: docker_engine_install
 
 - name: Save Non-Root User

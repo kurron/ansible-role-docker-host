@@ -10,4 +10,3 @@ docker_compose_version: 1.8.1
 docker_machine_install: true
 docker_machine_version: 0.8.2
 
-
