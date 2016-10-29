@@ -7,6 +7,12 @@
       mode: 0755
   when: docker_engine_install
 
+- name: Determine Docker File System
+  become: no
+  set_fact:
+      docker_file_system: "{% if ansible_distribution == \"CentOS\" %}overlay{% else %}{{docker_engine_storage_driver}}{% endif %}"
+  when: docker_engine_install
+
 - name: Place Docker Configuration File
   become: yes
   template:
@@ -29,6 +35,8 @@
 - name: Run Docker Engine Installer
   become: yes
   shell: "{{ansible_user_dir}}/{{base_download_directory}}/docker-install.sh"
+  args:
+      creates: /usr/bin/docker
   when: docker_engine_install
 
 - name: Save Non-Root User
