@@ -60,6 +60,11 @@
   command: /bin/systemctl restart docker
   when: docker_engine_install
 
+- name: Always Start Docker
+  become: yes
+  command: /bin/systemctl enable docker
+  when: docker_engine_install
+
 - name: Test Docker
   become: yes
   command: /usr/bin/docker run --rm hello-world
