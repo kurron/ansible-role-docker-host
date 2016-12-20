@@ -10,7 +10,7 @@
 - name: Determine Docker File System
   become: no
   set_fact:
-      docker_file_system: "{% if ansible_distribution == \"CentOS\" %}overlay{% else %}{{docker_engine_storage_driver}}{% endif %}"
+      docker_file_system: "{% if ansible_distribution == \"RedHat\" %}overlay{% else %}{{docker_engine_storage_driver}}{% endif %}"
   when: docker_engine_install
 
 - name: Place Docker Configuration File
@@ -80,7 +80,7 @@
 #   - systemd: state=restarted daemon_reload=yes name=docker
 - name: Restart Docker
   become: yes
-  command: /bin/systemctl restart docker
+  shell: "/bin/systemctl daemon-reload && /bin/systemctl restart docker"
   when: docker_engine_install
 
 - name: Always Start Docker
