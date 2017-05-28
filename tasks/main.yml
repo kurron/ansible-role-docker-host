@@ -28,13 +28,13 @@
   become: no
   get_url:
       url: "https://get.docker.com/"
-      dest: "{{ansible_user_dir}}/{{base_download_directory}}/docker-install.sh"
+      dest: "{{base_user_directory}}/{{base_download_directory}}/docker-install.sh"
       mode: 0554
   when: docker_engine_install and docker_engine_install_via_script
 
 - name: Run Docker Engine Installer
   become: yes
-  shell: "{{ansible_user_dir}}/{{base_download_directory}}/docker-install.sh"
+  shell: "{{base_user_directory}}/{{base_download_directory}}/docker-install.sh"
   args:
       creates: /usr/bin/docker
   when: docker_engine_install and docker_engine_install_via_script
