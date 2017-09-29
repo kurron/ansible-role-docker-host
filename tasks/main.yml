@@ -10,7 +10,7 @@
 - name: Determine Docker File System
   become: no
   set_fact:
-      docker_file_system: "{% if ansible_distribution == \"RedHat\" or if ansible_distribution == \"CentOS\" %}overlay{% else %}{{docker_engine_storage_driver}}{% endif %}"
+      docker_file_system: "{% if ansible_distribution == \"RedHat\" %}overlay{% elif ansible_distribution == \"CentOS\" %}overlay{% else %}{{docker_engine_storage_driver}}{% endif %}"
   when: docker_engine_install
 
 - name: Place Docker Configuration File
