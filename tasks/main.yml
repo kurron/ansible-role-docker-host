@@ -10,7 +10,7 @@
 - name: Determine Docker File System
   become: no
   set_fact:
-      docker_file_system: "{% if ansible_distribution == \"RedHat\" %}overlay{% else %}{{docker_engine_storage_driver}}{% endif %}"
+      docker_file_system: "{% if ansible_distribution == \"RedHat\" or if ansible_distribution == \"CentOS\" %}overlay{% else %}{{docker_engine_storage_driver}}{% endif %}"
   when: docker_engine_install
 
 - name: Place Docker Configuration File
@@ -48,7 +48,7 @@
       gpgcheck: yes
       gpgkey: "https://yum.dockerproject.org/gpg"
       state: present
-  when: docker_engine_install and (ansible_distribution == "RedHat") and (not docker_engine_install_via_script)
+  when: docker_engine_install and (ansible_distribution == "RedHat" or ansible_distribution == "CentOS") and (not docker_engine_install_via_script)
   tags:
       - debug
 
@@ -58,7 +58,7 @@
     name: "docker-engine-{{ docker_engine_install_version }}"
     state: present
     update_cache: yes
-  when: docker_engine_install and (ansible_distribution == "RedHat") and (not docker_engine_install_via_script)
+  when: docker_engine_install and (ansible_distribution == "RedHat" or ansible_distribution == "CentOS") and (not docker_engine_install_via_script)
   tags:
       - debug
 
@@ -76,11 +76,12 @@
       append: yes
   when: docker_engine_install
 
-# TODO: when Ansible 2.2 comes out, switch to using this module instead
-#   - systemd: state=restarted daemon_reload=yes name=docker
 - name: Restart Docker
   become: yes
-  shell: "/bin/systemctl daemon-reload && /bin/systemctl restart docker"
+  systemd: #"/bin/systemctl daemon-reload && /bin/systemctl restart docker"
+    name: docker
+    state: restarted
+    daemon_reload: yes
   when: docker_engine_install
 
 - name: Always Start Docker
