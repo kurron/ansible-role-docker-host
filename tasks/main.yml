@@ -84,22 +84,9 @@
     daemon_reload: yes
   when: docker_engine_install
   
-- name: Start Docker
-  become: yes
-  service:
-    name: docker
-    state: started
-    enabled: yes
-  when: docker_engine_install
-
 - name: Always Start Docker
   become: yes
   command: /bin/systemctl enable docker
-  when: docker_engine_install
-
-- name: Test Docker
-  become: yes
-  command: /usr/bin/docker run --rm hello-world
   when: docker_engine_install
 
 - name: Download Docker Compose Binary
