@@ -86,10 +86,10 @@
   
 - name: Start Docker
   become: yes
-  systemd: #"/bin/systemctl daemon-reload && /bin/systemctl restart docker"
+  service:
     name: docker
     state: started
-    daemon_reload: yes
+    enabled: yes
   when: docker_engine_install
 
 - name: Always Start Docker
