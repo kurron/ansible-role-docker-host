@@ -76,11 +76,19 @@
       append: yes
   when: docker_engine_install
 
-- name: Restart Docker
+- name: Stop Docker
   become: yes
   systemd: #"/bin/systemctl daemon-reload && /bin/systemctl restart docker"
     name: docker
-    state: restarted
+    state: stopped
+    daemon_reload: yes
+  when: docker_engine_install
+  
+- name: Start Docker
+  become: yes
+  systemd: #"/bin/systemctl daemon-reload && /bin/systemctl restart docker"
+    name: docker
+    state: started
     daemon_reload: yes
   when: docker_engine_install
 
