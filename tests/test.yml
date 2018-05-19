@@ -1,4 +1,7 @@
 ---
 - hosts: remote
+  gather_facts: false
+  pre_tasks:
+      - raw: sudo apt-get --assume-yes install software-properties-common python
   roles:
-  - role: ../../ansible-role-docker-host
+      - role: ../../ansible-role-docker-host
