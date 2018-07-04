@@ -13,4 +13,4 @@ docker_compose_version: 1.21.2
 
 docker_machine_install: true
 # https://github.com/docker/machine/releases
-docker_machine_version: 0.14.0
+docker_machine_version: 0.15.0
