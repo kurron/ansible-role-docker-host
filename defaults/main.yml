@@ -2,7 +2,7 @@
 docker_engine_install: true
 docker_engine_install_via_script: true
 # https://github.com/docker/docker-ce/releases
-docker_engine_install_version: 18.06.0-ce
+docker_engine_install_version: 18.06.1-ce
 docker_engine_graph: /var/lib/docker
 docker_engine_storage_driver: overlay2
 docker_engine_log_size: 1g
