@@ -2,14 +2,14 @@
 docker_engine_install: true
 docker_engine_install_via_script: true
 # https://github.com/docker/docker-ce/releases
-docker_engine_install_version: 19.03.13
+docker_engine_install_version: 19.03.14
 docker_engine_graph: /var/lib/docker
 docker_engine_storage_driver: overlay2
 docker_engine_log_size: 1g
 
 docker_compose_install: true
 # https://github.com/docker/compose/releases
-docker_compose_version: 1.27.4
+docker_compose_version: 1.29.2
 
 docker_machine_install: true
 # https://github.com/docker/machine/releases
